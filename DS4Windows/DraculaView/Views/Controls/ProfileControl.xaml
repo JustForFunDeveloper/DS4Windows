@@ -1,0 +1,126 @@
+﻿<UserControl x:Class="DS4WinWPF.DraculaView.Views.Controls.ProfileControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="240"
+             Margin="20,0,20,0">
+    <UserControl.Resources>
+        <system:Double x:Key="IconSize">15</system:Double>
+        <Style
+            x:Key="ProfileButton"
+            BasedOn="{StaticResource MahApps.Styles.Button.Square.Accent}"
+            TargetType="Button">
+            <Setter Property="Foreground" Value="{Binding Path=ForeGroundBrush}" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Margin" Value="0,0,10,0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="Transparent">
+                            <ContentPresenter
+                                x:Name="MyContentPresenter"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel HorizontalAlignment="Center" 
+                VerticalAlignment="Center">
+        <Grid Cursor="Hand">
+            <Image x:Name="DefaultProfileImage"
+                   Source="/Resources/DraculaView/ProfilePicture.png"
+                   Width="{Binding Width, ElementName=Rectangle}"
+                   Height="{Binding Height, ElementName=Rectangle}">
+            </Image>
+            <Rectangle x:Name="Rectangle" 
+                       Width="150" 
+                       Height="170" 
+                       Stroke="{Binding Foreground, ElementName=ProfileButton}"/>
+            <TextBlock Text="{Binding Path=ProfileName}"
+                       Margin="-20,10,0,0"
+                       Foreground="{Binding Path=ForeGroundBrush}"
+                       FontSize="20"/>
+            <Button x:Name="ProfileButton"
+                    Style="{StaticResource ProfileButton}"
+                    Width="{Binding Width, ElementName=Rectangle}"
+                    Height="{Binding Height, ElementName=Rectangle}"
+                    Click="ProfileButton_OnClick">
+                <Grid HorizontalAlignment="Center"
+                      VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <iconPacks:PackIconFontAwesome x:Name="AddProfileIcon" 
+                                                   Grid.Row="0" 
+                                                   Width="{StaticResource IconSize}"
+                                                   Height="{StaticResource IconSize}"
+                                                   Kind="PlusSolid" 
+                                                   HorizontalAlignment="Center"
+                                                   Foreground="{Binding Foreground, ElementName=ProfileButton}"/>
+                    <TextBlock x:Name="AddProfileText"
+                               Grid.Row="1" 
+                               Text="Add Profile"
+                               Margin="0,5,0,0"
+                               HorizontalAlignment="Center"
+                               Foreground="{Binding Foreground, ElementName=ProfileButton}"
+                               FontSize="15"/>
+                </Grid>
+            </Button>
+        </Grid>
+        <StackPanel x:Name="DetailsPanel" 
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Details" 
+                       Foreground="{Binding Path=ForeGroundBrush}"
+                       Margin="0,0,18,0"
+                       VerticalAlignment="Center"
+                       FontSize="15"/>
+            <Button Style="{StaticResource ProfileButton}"
+                    Cursor="Hand"
+                    ToolTip="Edit"
+                    Click="ProfileEdit_OnClick">
+                <iconPacks:Material Width="{StaticResource IconSize}"
+                                    Height="{StaticResource IconSize}"
+                                    Kind="Pencil" />
+            </Button>
+            <Button Style="{StaticResource ProfileButton}"
+                    Cursor="Hand"
+                    ToolTip="Duplicate"
+                    Click="ProfileDuplicate_OnClick">
+                <iconPacks:PackIconFontAwesome Width="{StaticResource IconSize}"
+                                               Height="{StaticResource IconSize}"
+                                               Kind="CloneRegular" />
+            </Button>
+            <Button Style="{StaticResource ProfileButton}"
+                    Cursor="Hand"
+                    ToolTip="Delete"
+                    Click="ProfileDelete_OnClick">
+                <iconPacks:Material Width="{StaticResource IconSize}"
+                                    Height="{StaticResource IconSize}"
+                                    Kind="Delete"/>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

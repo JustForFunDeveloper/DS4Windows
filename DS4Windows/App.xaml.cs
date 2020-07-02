@@ -17,6 +17,7 @@ using System.Windows.Interop;
 using WPFLocalizeExtension.Engine;
 using NLog;
 using System.Windows.Media;
+using DS4WinWPF.DraculaView.Views;
 
 namespace DS4WinWPF
 {
@@ -167,7 +168,8 @@ namespace DS4WinWPF
 
             SetUICulture(DS4Windows.Global.UseLang);
             DS4Windows.Global.LoadLinkedProfiles();
-            DS4Forms.MainWindow window = new DS4Forms.MainWindow(parser);
+            //DS4Forms.MainWindow window = new DS4Forms.MainWindow(parser);
+            DraculaMainWindow window = new DraculaMainWindow(parser);
             MainWindow = window;
             window.Show();
             HwndSource source = PresentationSource.FromVisual(window) as HwndSource;

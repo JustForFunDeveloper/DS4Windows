@@ -222,6 +222,16 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
 
+        public bool BatteryCharging
+        {
+            get => device.Charging;
+        }
+
+        public int BatteryChargeLevel
+        {
+            get => device.Battery;
+        }
+
         public string BatteryState
         {
             get
@@ -243,6 +253,8 @@ namespace DS4WinWPF.DS4Forms.ViewModels
             }
         }
         public event EventHandler SelectedIndexChanged;
+
+        public ConnectionType ConnectionType => device.ConnectionType;
 
         public string StatusSource
         {

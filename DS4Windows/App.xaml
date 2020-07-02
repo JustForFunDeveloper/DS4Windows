@@ -4,7 +4,17 @@
              xmlns:local="clr-namespace:DS4WinWPF"
              Startup="Application_Startup" Exit="Application_Exit" ShutdownMode="OnExplicitShutdown" SessionEnding="Application_SessionEnding">
     <Application.Resources>
-        <Style TargetType="{x:Type Button}" x:Key="NoBGHoverBtn">
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml" />
+                <ResourceDictionary Source="/DraculaView/Styles/CustomTooltip.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/DraculaView/Styles/CustomDialog.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        <!--<Style TargetType="{x:Type Button}" x:Key="NoBGHoverBtn">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -20,6 +30,6 @@
             <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
             <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
             <Setter Property="TextOptions.TextHintingMode" Value="Fixed" />
-        </Style>
+        </Style>-->
     </Application.Resources>
 </Application>
